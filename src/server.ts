@@ -31,21 +31,6 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   //! END @TODO1
 
-  app.get("/filteredimage", async ( req, res ) => {
-    let { image_url } = req.query;
-    if(!image_url){
-      return res.status(400).send("Please supply an image url");
-    }
-    try {
-    await filterImageFromURL(image_url).then( processedImg => {
-      res.status(200).sendFile(processedImg, () => {
-        deleteLocalFiles([processedImg]);
-      })
-    })
-    } catch (err) {
-      res.status(400).send("Dude, something bad happened!");
-    }
-  });
 
   // Root Endpoint
   // Displays a simple message to the user
